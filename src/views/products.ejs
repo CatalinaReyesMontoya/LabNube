@@ -1,0 +1,53 @@
+<%- include('partials/_header'); -%>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Product_name</th>
+                        <th>Product_description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data) { %>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                          <tr>
+                            <td><%= (i + 1) %></td>
+                            <td><%= data[i].product_name %></td>
+                            <td><%= data[i].product_description %></td>
+                            <td>
+                                <a href="/update/<%= data[i].id %>" class="btn btn-info">Edit</a>
+                                <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                              </td>
+                          </tr>
+                        <% } %>
+                      <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <div class="card-body">
+      
+              <form action="/add" method="POST">
+                <div class="form-group">
+                  <input type="text" name="product_name" placeholder="nombre del producto" class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                  <input type="text" name="product_description" placeholder="descripcion del producto" class="form-control">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                  save product
+                </button>
+              </form>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+<%- include('partials/_footer'); -%>
